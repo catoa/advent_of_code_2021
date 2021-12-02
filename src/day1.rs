@@ -1,14 +1,22 @@
 pub fn solve(input: Vec<usize>) {
-    find_increases(&input);
-    find_increases(&input.windows(3).map(|s| s.iter().sum()).collect());
-}
-
-fn find_increases(input: &Vec<usize>) {
-    let mut num_increases = 0;
-    for window in input.windows(2) {
-        if window[1] > window[0] {
-            num_increases += 1;
+    let has_increase = |acc: usize, s: &[usize]| {
+        if &s[1] > &s[0] {
+            acc + 1
+        } else {
+            acc + 0
         }
-    }
-    println!("{}", num_increases);
+    };
+
+    // Part A => 1477
+    println!("{}", &input.windows(2).fold(0, has_increase));
+    // Part B => 1523
+    println!(
+        "{:?}",
+        &input
+            .windows(3)
+            .map(|s| s.iter().sum::<usize>())
+            .collect::<Vec<_>>()
+            .windows(2)
+            .fold(0, has_increase)
+    );
 }

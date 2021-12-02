@@ -3,7 +3,7 @@ use std::env;
 use std::fs;
 
 fn read_data() -> Vec<usize> {
-    let contents = fs::read_to_string("data/day1/day1.txt").expect("Unable to read the file");
+    let contents = fs::read_to_string("data/day1.txt").expect("Unable to read the file");
     contents
         .split("\n")
         .filter_map(|s| s.parse::<usize>().ok())
