@@ -1,4 +1,16 @@
-pub fn solve(input: Vec<usize>) {
+use std::fs;
+
+fn read_data(path: &str) -> Vec<usize> {
+    let contents = fs::read_to_string(path).expect("Unable to read the file");
+    contents
+        .split("\n")
+        .filter_map(|s| s.parse::<usize>().ok())
+        .collect()
+}
+
+pub fn solve() {
+    let input = read_data("data/day1.txt");
+
     let has_increase = |acc: usize, s: &[usize]| {
         if &s[1] > &s[0] {
             acc + 1
